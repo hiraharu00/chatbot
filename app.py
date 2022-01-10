@@ -7,9 +7,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,ImageSendMessage
 )
-from linebot.models.send_messages import ImageSendMessage
 from mod import(
     screenshot,conversion
 )
@@ -46,10 +45,10 @@ def callback():
 def handle_message(event):
     search_word=conversion(event.message.text,'.')
     screenshot(search_word)
-    line_bot_api.reply_message(
-        event.reply_token,
-        ImageSendMessage(image=os.path.join(os.path.dirname(os.path.abspath(__file__)), "image/screen.png")))
-
+    message=ImageSendMessage(
+        original_content_url='aaa'
+        preview_image_url='aaa'
+    )
 
 
 
